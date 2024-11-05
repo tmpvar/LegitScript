@@ -34,6 +34,17 @@ jobs:
     - uses: actions/upload-artifact@v4.3.5
       with:
         name: 'LegitScriptWasm-${{ github.ref_name }}'
+        if: github.event_name != 'pull_request'
+        path: |
+          ${{github.workspace}}/build/web/LegitScriptWasm.wasm
+          ${{github.workspace}}/build/web/LegitScriptWasm.js
+        if-no-files-found: error
+        overwrite: true
+
+    - uses: actions/upload-artifact@v4.3.5
+      with:
+        name: 'LegitScriptWasm-${{ github.sha }}'
+        if: github.event_name == 'pull_request'
         path: |
           ${{github.workspace}}/build/web/LegitScriptWasm.wasm
           ${{github.workspace}}/build/web/LegitScriptWasm.js
