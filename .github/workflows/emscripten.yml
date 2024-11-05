@@ -34,7 +34,7 @@ jobs:
     - name: Store artifact's name
       id: artifact-name
       env:
-        REF: ${{ github.ref_name }}
+        REF: ${{ github.ref_name }
       run: echo "::set-output name=value::${REF////-}-test"
 
     - uses: actions/upload-artifact@v4.3.5
